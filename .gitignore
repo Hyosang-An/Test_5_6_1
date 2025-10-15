@@ -1,0 +1,74 @@
+# =========================
+# Unreal Engine (Project)
+# =========================
+
+# 빌드 산출물 / 캐시 / 임시
+/Binaries/
+/DerivedDataCache/
+/Intermediate/
+/Saved/
+/.vscode/
+/.vs/
+/.idea/
+/Script/**/DerivedDataCache/
+/Script/**/Intermediate/
+/Script/**/Saved/
+
+# 플러그인 내부 생성물
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+Plugins/**/Saved/
+
+# 개인 작업용 개발자 폴더(필요하면 제외)
+/Content/Developers/
+
+# 플랫폼별/툴별 생성물
+*.VC.db
+*.VC.opendb
+*.sdf
+*.suo
+*.user
+*.userprefs
+*.opensdf
+*.opendb
+*.log
+*.dmp
+*.pdb
+*.cache
+*.obj
+*.ipch
+*.pch
+*.tmp
+*.tmp.*
+*.rsuser
+*.rsp
+*.tlog
+*.lastbuildstate
+
+# IDE/프로젝트 메타(UE는 솔루션을 재생성하므로 보통 제외)
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.xcodeproj
+*.xcworkspace
+
+# OS 잡파일
+.DS_Store
+Thumbs.db
+
+# Live Coding/Hot Reload 잔여물(버전에 따라 다름)
+/HotReload/
+*.modules
+*.ubt
+*.ubuild
+
+# --------------------------------------------------------------------------------
+# ❗ 보존 권장(커밋해야 하는 것들) - 참고용, ignore가 아니라 설명입니다.
+#  - *.uproject           : 프로젝트 파일
+#  - Config/**            : 설정(팀 공용 설정 유지)
+#  - Source/**            : C++ 소스
+#  - Content/**           : 에셋(.uasset/.umap 등) — LFS 사용 권장
+#  - Plugins/**           : 자체 플러그인(단, Binaries/Intermediate/Saved는 무시)
+#  - Build/**             : 타겟/플랫폼 설정 파일(프로젝트 루트의 Build 폴더는 보통 포함)
+# --------------------------------------------------------------------------------
