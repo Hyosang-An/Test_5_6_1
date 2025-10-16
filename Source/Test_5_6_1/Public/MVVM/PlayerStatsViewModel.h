@@ -33,10 +33,14 @@ public:
 
 	// Score 속성
 	UFUNCTION(BlueprintPure, FieldNotify)
-	int32 GetScore() const { return Score; }
+	int32 GetScore() const
+	{
+		UE_LOG(LogTemp, Warning, TEXT("C++ GetScore!!"))
+		return Score;
+	}
 
-	UFUNCTION(BlueprintCallable)
-	void SetScore(int32 NewScore);
+	//UFUNCTION(BlueprintCallable)
+	void SettingScore(int32 NewScore);
 
 	// PlayerName 속성
 	UFUNCTION(BlueprintPure, FieldNotify)
@@ -67,13 +71,13 @@ public:
 
 private:
 	// FieldNotify를 사용하여 자동으로 UI에 알림
-	UPROPERTY(FieldNotify, Setter, Getter)
+	UPROPERTY(FieldNotify, BlueprintReadOnly, meta = (AllowPrivateAccess))
 	float Health;
 
 	UPROPERTY(FieldNotify, Setter, Getter)
 	float MaxHealth;
 
-	UPROPERTY(FieldNotify, Setter, Getter)
+	UPROPERTY(FieldNotify, Setter=SettingScore, BlueprintReadWrite, meta = (AllowPrivateAccess))
 	int32 Score;
 
 	UPROPERTY(FieldNotify, Setter, Getter)

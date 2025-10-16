@@ -41,7 +41,7 @@ void ATest_5_6_1PlayerController::BeginPlay()
         PlayerStatsViewModel->SetPlayerName(FText::FromString(TEXT("Hero")));
         PlayerStatsViewModel->SetHealth(100.0f);
         PlayerStatsViewModel->SetMaxHealth(100.0f);
-        PlayerStatsViewModel->SetScore(0);
+        PlayerStatsViewModel->SettingScore(0);
 
         UE_LOG(LogTest_5_6_1, Log, TEXT("PlayerStatsViewModel created"));
     }
@@ -82,25 +82,21 @@ void ATest_5_6_1PlayerController::CreatePlayerStatsUI()
 {
     if (!PlayerStatsWidgetClass)
     {
-        UE_LOG(LogTest_5_6_1, Warning, TEXT("PlayerStatsWidgetClass is not set. Please assign WBP_PlayerStats in the editor."));
+        UE_LOG(LogTest_5_6_1, Warning, TEXT("PlayerStatsWidgetClass is not set!"));
         return;
     }
 
     // Widget 생성
     PlayerStatsWidget = CreateWidget<UPlayerStatsWidget>(this, PlayerStatsWidgetClass);
-    
+
     if (PlayerStatsWidget)
     {
-        // ViewModel을 Widget에 할당
-        PlayerStatsWidget->ViewModel = PlayerStatsViewModel;
-        
+        // Manual 방식으로 ViewModel 설정
+        PlayerStatsWidget->SetPlayerStatsViewModel(PlayerStatsViewModel);
+
         // 뷰포트에 추가
         PlayerStatsWidget->AddToViewport();
-        
-        UE_LOG(LogTest_5_6_1, Log, TEXT("PlayerStats UI created successfully"));
-    }
-    else
-    {
-        UE_LOG(LogTest_5_6_1, Error, TEXT("Failed to create PlayerStatsWidget"));
+
+        UE_LOG(LogTest_5_6_1, Log, TEXT("PlayerStats UI created"));
     }
 }

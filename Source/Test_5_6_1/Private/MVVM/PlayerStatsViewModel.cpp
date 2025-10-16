@@ -24,6 +24,7 @@ void UPlayerStatsViewModel::SetHealth(float NewHealth)
 		UE_MVVM_SET_PROPERTY_VALUE(Health, ClampedHealth);
 
 		// HealthPercent와 IsAlive도 변경되었을 수 있으므로 알림
+		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(GetHealth);
 		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(GetHealthPercent);
 		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(IsAlive);
 	}
@@ -46,11 +47,13 @@ void UPlayerStatsViewModel::SetMaxHealth(float NewMaxHealth)
 	}
 }
 
-void UPlayerStatsViewModel::SetScore(int32 NewScore)
+void UPlayerStatsViewModel::SettingScore(int32 NewScore)
 {
+	UE_LOG(LogTemp,Warning, TEXT("SettingScore c++ called!!"))
 	if (Score != NewScore)
 	{
 		UE_MVVM_SET_PROPERTY_VALUE(Score, NewScore);
+		UE_MVVM_BROADCAST_FIELD_VALUE_CHANGED(GetScore);
 	}
 }
 
@@ -73,7 +76,7 @@ float UPlayerStatsViewModel::GetHealthPercent() const
 
 void UPlayerStatsViewModel::AddScore(int32 Points)
 {
-	SetScore(Score + Points);
+	SettingScore(Score + Points);
 }
 
 void UPlayerStatsViewModel::TakeDamage(float DamageAmount)
